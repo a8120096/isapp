@@ -19,10 +19,12 @@
             var tweet = document.getElementById('tf2').value;
 
             var sql = `insert into Tweets (name, tweet, time) values("${userid}", "${tweet}", now());`;
+            // バッククオート`を利用して埋め込みをしている
             var objects = await osql.connect(sql);
             console.log(objects);
 
             document.getElementById('result').innerHTML = "tweetしました";
+            document.getElementById('tf2').value = "";
         }
     </script>
 
