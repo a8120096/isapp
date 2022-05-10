@@ -10,13 +10,17 @@
     <script type="text/javascript" src="../osql.js"></script>
 
     <script>
+        $().ready(function () {
+            doSelect();
+        });
+
         function button1Pressed() {
             doInsert();
         }
 
-        function buttonXPressed() {
-            doSelect();
-        }
+        // function buttonXPressed() {
+        //     doSelect();
+        // }
 
         async function doInsert() {
             var userid = document.getElementById('tf1').value;
@@ -69,7 +73,7 @@
     <button onclick="button1Pressed()">tweet</button>
     <hr>
     <p id="result"></p>
-    <button onclick="buttonXPressed()">X</button>
+    <!-- <button onclick="buttonXPressed()">X</button> -->
     <p id="tweetresult">xxxx</p>
 </body>
 
