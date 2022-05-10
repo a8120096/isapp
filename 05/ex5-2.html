@@ -14,19 +14,10 @@
         //     doSelect();
         // });
 
-        var x;
-
         $().ready(function () {
-            x = 0;
-            setInterval(doCount, 1000);
-        });
+            setInterval(doSelect, 2000);
 
-        async function doCount() {
-            x++;
-            if (x % 2 == 0) {
-                doSelect();
-            }
-        }
+        });
 
         function button1Pressed() {
             doInsert();
