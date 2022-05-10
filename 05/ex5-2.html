@@ -10,9 +10,23 @@
     <script type="text/javascript" src="../osql.js"></script>
 
     <script>
+        // $().ready(function () {
+        //     doSelect();
+        // });
+
+        var x;
+
         $().ready(function () {
-            doSelect();
+            x = 0;
+            setInterval(doCount, 1000);
         });
+
+        async function doCount() {
+            x++;
+            if (x % 2 == 0) {
+                doSelect();
+            }
+        }
 
         function button1Pressed() {
             doInsert();
@@ -34,8 +48,6 @@
             document.getElementById('result').innerHTML = "tweetしました";
             document.getElementById('tf2').value = "";
         }
-
-
 
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
