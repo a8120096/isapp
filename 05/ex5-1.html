@@ -16,8 +16,8 @@
 
         async function doSelect() {
             var sql = 'select * from Tweets order by time desc limit 20';
-            // var word = document.getElementById('word').value;
-            // var sql = `select * from Tweets where tweet like "%${word}%";`;
+            var word = document.getElementById('word').value;
+            var sql = `select * from Tweets where tweet like "%${word}%";`;
 
             var objects = await osql.connect(sql);
             console.log(objects);
@@ -43,10 +43,10 @@
 
 <body>
     <h1>Tweets</h1>
-    <button onclick="button1Pressed()">X</button>
+    <!-- <button onclick="button1Pressed()">X</button> -->
     <br>
-    <!-- 検索ワード:　<input id="word" type="textfield">
-    <button onclick="button1Pressed()">検索</button> -->
+    検索ワード:　<input id="word" type="textfield">
+    <button onclick="button1Pressed()">検索</button>
     <hr>
     <p id="result">xxxx</p>
 </body>
