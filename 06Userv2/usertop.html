@@ -16,7 +16,6 @@
 
         function init() {
             var username = sessionStorage.getItem('username');
-            var username = osql.getParam('username');
             document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
         }
         function buttonPressed() {
