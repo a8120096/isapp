@@ -18,7 +18,13 @@
             var username = sessionStorage.getItem('username');
             document.getElementById('welcome').innerHTML = 'ようこそ' + username + 'さん';
         }
-        function buttonPressed() {
+        function tweetButtonPressed() {
+            var userid = sessionStorage.getItem('userid');
+            var param = `?userid=${userid}`;
+            location.href = 'tweet.html' + param;
+        }
+
+        function updateButtonPressed() {
             var userid = sessionStorage.getItem('userid');
             var param = `?userid=${userid}`;
             location.href = 'update.html' + param;
@@ -31,7 +37,9 @@
     <h1>ユーザトップ</h1>
     <p id="welcome"></p>
     <hr>
-    <input type="button" value="会員情報変更" onclick="buttonPressed();">
+    <input type="button" value="Tweet" onclick="tweetButtonPressed();">
+    <br>
+    <input type="button" value="会員情報変更" onclick="updateButtonPressed();">
 </body>
 
 </html>
