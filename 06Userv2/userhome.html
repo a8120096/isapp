@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../jquery.min.js"></script>
+    <script type="text/javascript" src="../settings.js"></script>
+    <script type="text/javascript" src="../osql.js"></script>
+
+    <script>
+        $().ready(function () {
+            doSelect();
+            setInterval(doSelect, 2000);
+        });
+
+        async function doSelect() {
+            var toid = osql.getParam('toid');
+            document.getElementById('tf1').value = toid;
+            var sql = `select * from Tweets where name = "${toid}" order by time desc limit 20`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+            var html = '';
+            html = html + '<table border="1">';
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                html = html + '<tr>';
+                html = html + '<td>' + object.name + '</td>';
+                html = html + '<td>' + object.tweet + '</td>';
+                html = html + '<td>' + object.time + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('tweetresult').innerHTML = html;
+        }
+
+        function FollowButtonPressed() {
+                doInsert();
+        }
+        
+        async function doInsert() {
+
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>ユーザホーム</h1>
+    <br>
+    名前:<input id="tf1" value="" type="textfield" disabled>
+    <button id="follow" value="follow"　onclick="followButtonPressed">フォロー</button>
+    <hr>
+    <p id="result"></p>
+    <p id="tweetresult">xxxx</p>
+</body>
+
+</html>
