@@ -35,12 +35,18 @@
             document.getElementById('tweetresult').innerHTML = html;
         }
 
-        function FollowButtonPressed() {
-                doInsert();
+        function followButtonPressed() {
+            doInsert();
         }
-        
-        async function doInsert() {
 
+        async function doInsert() {
+            var toid = osql.getParam('toid');
+            var fromid = osql.getParam('fromid');
+            var sql = `insert into Follows (fromid, toid) values("${fromid}", "${toid}");`;
+            var objects = await osql.connect(sql);
+            console.log(objects);
+
+            document.getElementById('result').innerHTML = 'フォローしました';
         }
     </script>
 
@@ -50,7 +56,7 @@
     <h1>ユーザホーム</h1>
     <br>
     名前:<input id="tf1" value="" type="textfield" disabled>
-    <button id="follow" value="follow"　onclick="followButtonPressed">フォロー</button>
+    <button id="follow" value="follow" onclick="followButtonPressed()">フォロー</button>
     <hr>
     <p id="result"></p>
     <p id="tweetresult">xxxx</p>
