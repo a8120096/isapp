@@ -27,21 +27,20 @@
                 html = html + '<td>' + object.name + '</td>';
                 html = html + '<td>' + '<a href="update.html?userid=' + object.id + '">変更</a>' + '</td>';
                 // html = html + '<td>' + '<input id="delete" type="button" value="削除" onclick="deleteButtonPressed()">' + '</td>';
-                html = html + '<td>' + '<button id="delete" type="button" value="' + object.id + '"" onclick="deleteButtonPressed()">削除</button>' + '</td>';
+                html = html + '<td>' + '<button id="delete" type="button" onclick="deleteButtonPressed(' + object.id + ')">削除</button>' + '</td>';
                 html = html + '</tr>';
             }
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
         }
 
-        function deleteButtonPressed() {
+        function deleteButtonPressed(objectid) {
             var ans = window.confirm("本当にいいんですね？");
+            var userid = objectid;
             if (ans == true) {
-                var userid = document.getElementById("delete").value;
-                // var userid = 10;
                 var deleteSql = `delete from Users where id = "${userid}"`;
-                objects = osql.connect(deleteSql);
-                execSelect();
+                var objects = osql.connect(deleteSql);
+                execSelect()
             }
         }
 
